@@ -17,7 +17,7 @@ use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 nodejs_version: "16"
-webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2]
+webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2, python-is-python3]
 web_extra_daemons:
     - name: "gunicorn"
       command: "gunicorn -w 4 testapp:app"
