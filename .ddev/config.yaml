@@ -17,20 +17,22 @@ use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 nodejs_version: "16"
+
+# Extra things to make django work
 webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2, python-is-python3]
 web_extra_daemons:
     - name: "gunicorn"
-      command: "gunicorn -w 4 testapp:app"
-      directory: /var/www/html
-    - name: "mysite-django"
-      command: "python3 manage.py runserver 0.0.0.0:8001"
+      command: "mkdir -p /var/tmp/gunicorn && gunicorn -w 4 -c config/gunicorn/dev.py"
       directory: /var/www/html/mysite
+#    - name: "mysite-django"
+#      command: "python manage.py runserver 0.0.0.0:8001"
+#      directory: /var/www/html/mysite
 
 web_extra_exposed_ports:
-  #- name: django-run
-  #container_port: 8001
-  #http_port: 8001
-  #https_port: 8002
+  - name: django-run
+    container_port: 8080
+    http_port: 8081
+    https_port: 8080
 
 # Key features of ddev's config.yaml:
 
