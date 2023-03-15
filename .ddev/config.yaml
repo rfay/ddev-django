@@ -18,6 +18,10 @@ composer_version: "2"
 web_environment: []
 nodejs_version: "16"
 webimage_extra_packages: [gunicorn, python3-django]
+web_extra_daemons:
+    - name: "gunicorn"
+      command: "gunicorn -w 4 myapp:app"
+      directory: /var/www/html
 
 # Key features of ddev's config.yaml:
 
