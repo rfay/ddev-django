@@ -1,6 +1,6 @@
 name: ddev-django
 type: php
-docroot: ""
+docroot: "mysite"
 php_version: "8.0"
 webserver_type: nginx-fpm
 router_http_port: "80"
@@ -9,19 +9,28 @@ xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 database:
-    type: mariadb
-    version: "10.4"
+    type: postgres
+    version: "14"
 nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 nodejs_version: "16"
-webimage_extra_packages: [gunicorn, python3-django]
+webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2]
 web_extra_daemons:
     - name: "gunicorn"
-      command: "gunicorn -w 4 myapp:app"
+      command: "gunicorn -w 4 testapp:app"
       directory: /var/www/html
+    - name: "mysite-django"
+      command: "python3 manage.py runserver 0.0.0.0:8001"
+      directory: /var/www/html/mysite
+
+web_extra_exposed_ports:
+  #- name: django-run
+  #container_port: 8001
+  #http_port: 8001
+  #https_port: 8002
 
 # Key features of ddev's config.yaml:
 
