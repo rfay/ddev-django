@@ -7,6 +7,7 @@ The "demo" app here is just the [app from the django4 tutorial](https://docs.dja
 
 ## Instructions for demonstration
 
+* `ddev config global --use-traefik && ddev poweroff` to upgrade to the traefik router, which will be the default in DDEV v1.20.
 * `git clone https://github.com/rfay/ddev-django.git` 
 * `cd ddev-django`
 * `ddev start`
