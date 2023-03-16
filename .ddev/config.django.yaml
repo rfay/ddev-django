@@ -4,13 +4,20 @@
 # * Adds starting gunicorn to do webserving
 # This will most likely be integrated into ddev-webserver's build and startup directly
 
+# docroot is where the app is
+docroot: "demo"
+
 # postgres seems to be the favorite DB for django4
 database:
   type: postgres
   version: "14"
 
 # Extra packages to make django work
-webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2, python-is-python3]
+webimage_extra_packages:
+  - gunicorn
+  - python3-django
+  - python-is-python3
+  - python3-psycopg2
 
 # This will move into ddev-webserver's supervisord config
 web_extra_daemons:
