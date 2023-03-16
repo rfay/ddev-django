@@ -1,9 +1,10 @@
-# This config
+# This config for django4
 # * specifies postgres db, most common db with django4
 # * adds necessary debian packages to ddev-webserver
 # * Adds starting gunicorn to do webserving
 # This will most likely be integrated into ddev-webserver's build and startup directly
 
+# postgres seems to be the favorite DB for django4
 database:
   type: postgres
   version: "14"
@@ -11,6 +12,7 @@ database:
 # Extra packages to make django work
 webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2, python-is-python3]
 
+# This will move into ddev-webserver's supervisord config
 web_extra_daemons:
   - name: "gunicorn"
     command: "mkdir -p /var/tmp/gunicorn && cd ${DOCROOT} && gunicorn -w 4 -c config/gunicorn/dev.py"
