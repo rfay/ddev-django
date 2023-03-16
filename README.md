@@ -12,6 +12,7 @@ The "demo" app here is just the [app from the django4 tutorial](https://docs.dja
 * `ddev start`
 * `ddev snapshot restore basic-running`
 * `ddev launch /admin/` or `ddev launch /polls` (login is admin/admin)
+* You can do all the things you'd normally do with `ddev ssh -d demo` and `python manage.ph` etc.
 
 
 ## Questions and directions
