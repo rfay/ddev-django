@@ -1,0 +1,17 @@
+# This config
+# * specifies postgres db, most common db with django4
+# * adds necessary debian packages to ddev-webserver
+# * Adds starting gunicorn to do webserving
+# This will most likely be integrated into ddev-webserver's build and startup directly
+
+database:
+  type: postgres
+  version: "14"
+
+# Extra packages to make django work
+webimage_extra_packages: [gunicorn, python3-django, python3-psycopg2, python-is-python3]
+
+web_extra_daemons:
+  - name: "gunicorn"
+    command: "mkdir -p /var/tmp/gunicorn && cd ${DOCROOT} && gunicorn -w 4 -c config/gunicorn/dev.py"
+    directory: /var/www/html/
