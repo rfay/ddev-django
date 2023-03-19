@@ -1,8 +1,9 @@
 # This config for django4
+# * Sets webserver_type
+# * Sets docroot (location of app)
 # * specifies postgres db, most common db with django4
-# * adds necessary debian packages to ddev-webserver
-# * Adds starting gunicorn to do webserving
-# This will most likely be integrated into ddev-webserver's build and startup directly
+
+webserver_type: nginx-gunicorn
 
 # docroot is where the app is
 docroot: "demo"
@@ -12,15 +13,3 @@ database:
   type: postgres
   version: "14"
 
-# Extra packages to make django work
-webimage_extra_packages:
-  - gunicorn
-  - python3-django
-  - python-is-python3
-  - python3-psycopg2
-
-# This will move into ddev-webserver's supervisord config
-#web_extra_daemons:
-#  - name: "gunicorn"
-#    command: "mkdir -p /var/tmp/gunicorn && cd ${DOCROOT} && gunicorn -w 4 -c config/gunicorn/dev.py"
-#    directory: /var/www/html/
